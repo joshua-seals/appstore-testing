@@ -4,16 +4,11 @@ from allauth.account.views import LoginView
 
 from api.v1.views import AppContextViewSet
 
-from django.http import HttpRequest
+
 from django.urls import reverse_lazy
+from django.shortcuts import redirect
 from django.views.generic.base import TemplateView
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
-
 from rest_framework.test import APIRequestFactory
-
-import requests
 
 """
 #######
@@ -74,7 +69,6 @@ def get_brand_details():
     response = list_view(factory.get(""))
     return response.data
 
-
 class HelxLoginView(LoginView):
     """
     Provides the login landing page data based on allauth, customized for HeLx.
@@ -103,8 +97,12 @@ class HelxLoginView(LoginView):
     def get(self, request, *args, **kwargs):
         request.session["helx_frontend"] = "react"
         if request.user.is_authenticated:
-            return redirect(success_url)
+            return redirect(self.success_url)
         return super(LoginView, self).get(request, *args, **kwargs)
+
+
+def HelxSpaRedirectView(request):
+    return redirect(reverse_lazy("helx"))
 
 
 class HelxSpaLoaderView(TemplateView):
@@ -114,7 +112,7 @@ class HelxSpaLoaderView(TemplateView):
 
     template_name = "frontend/index.html"
 
-    @method_decorator(login_required(login_url=reverse_lazy("helx_login")))
+    # @method_decorator(login_required(login_url=reverse_lazy("helx_login")))
     def dispatch(self, *args, **kwargs):
         return super(HelxSpaLoaderView, self).dispatch(*args, **kwargs)
 

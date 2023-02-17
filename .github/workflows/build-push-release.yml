@@ -1,0 +1,36 @@
+name: Build-Push-Release
+on:
+  push:
+    branches:
+      - master 
+      - main
+      - develop
+    tags:
+      - 'v[0-9]+.[0-9]+.*'
+jobs:
+  build-push-release:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.head_ref }} 
+        fetch-depth: 0
+    - name: Get Semver version
+      uses: codacy/git-version@2.7.1
+      id: version 
+    - name: Generate Tag 
+      env: 
+        RELEASE_VERSION: "v${{ steps.version.outputs.version }}"
+      run: |
+        echo ${{ RELEASE_VERSION }}
+
+
+    # - name: generate release notes
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #   run: |
+    #     gh api -X POST 'repos/{owner}/{repo}/releases/generate-notes' \
+    #       -F commitish=${{ env.RELEASE_VERSION }} \
+    #       -F tag_name=${{ env.RELEASE_VERSION }} \
+    #       > tmp-release-notes.json

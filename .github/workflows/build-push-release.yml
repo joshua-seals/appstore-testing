@@ -24,12 +24,7 @@ jobs:
         RELEASE_VERSION: "v${{ steps.version.outputs.version }}"
       run: |
         echo ${{ RELEASE_VERSION }}
-    #   # https://github.com/marketplace/actions/git-version
-    # - uses: codacy/git-version@2.7.1
-    #   name: Get Version
-    #   id: version
-    #   run: |
-    #     echo "v${{ steps.version.outputs.version }}"
+
 
     # - name: generate release notes
     #   env:

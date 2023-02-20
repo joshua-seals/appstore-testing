@@ -20,10 +20,8 @@ jobs:
       uses: codacy/git-version@2.7.1
       id: version 
     - name: Generate Tag 
-      env: 
-        RELEASE_VERSION: "${{ steps.version.outputs.version }}"
       run: |
-        echo "v${{ env.RELEASE_VERSION }}"
+        echo "v${{ steps.version.outputs.version }}"
 
 
     # - name: generate release notes

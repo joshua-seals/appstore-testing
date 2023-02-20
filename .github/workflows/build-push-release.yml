@@ -2,6 +2,7 @@ name: Build-Push-Release
 on:
   push:
     branches:
+      - feat/*
       - master 
       - main
       - develop

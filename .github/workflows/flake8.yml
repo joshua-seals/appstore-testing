@@ -7,8 +7,10 @@ on:
       - "test/*"
       - "fix/*"
       - "doc/*"
+      - develop
   pull_request:
     branches: [ master, develop ]
+    types: [ opened ]
 
 jobs:
   flak8e-check:

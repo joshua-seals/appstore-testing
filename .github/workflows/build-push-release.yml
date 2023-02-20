@@ -19,11 +19,9 @@ jobs:
     - name: Get Semver version
       uses: codacy/git-version@2.7.1
       id: version 
-    - name: Generate Tag 
-      env: 
-        RELEASE_VERSION: "v${{ steps.version.outputs.version }}"
+    - name: Get Version 
       run: |
-        echo ${{ RELEASE_VERSION }}
+        echo "v${{ steps.version.outputs.version }}""
 
 
     # - name: generate release notes

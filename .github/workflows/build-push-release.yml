@@ -21,9 +21,9 @@ jobs:
       id: version 
     - name: Generate Tag 
       env: 
-        RELEASE_VERSION: "v${{ steps.version.outputs.version }}"
+        RELEASE_VERSION: "${{ steps.version.outputs.version }}"
       run: |
-        echo ${{ RELEASE_VERSION }}
+        echo "v${{ env.RELEASE_VERSION }}"
 
 
     # - name: generate release notes

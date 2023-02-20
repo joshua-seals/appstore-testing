@@ -29,3 +29,4 @@ jobs:
         flake8 --ignore=E,W --exit-zero . 
       # We continue on error here until the code is clean
       continue-on-error: true
+

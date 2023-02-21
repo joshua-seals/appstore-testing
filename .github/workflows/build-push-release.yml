@@ -60,7 +60,7 @@ jobs:
         # enable_prerelease_mode: true
     - name: Get Version 
       run: |
-        echo "${{ steps.version.outputs.version }}"
+        echo "v${{ steps.version.outputs.version }}"
 #=======================================================================
     # - name: generate release notes
     #   env:

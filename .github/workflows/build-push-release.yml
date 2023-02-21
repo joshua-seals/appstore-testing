@@ -61,6 +61,7 @@ jobs:
     - name: Get Version 
       run: |
         echo "v${{ steps.version.outputs.version }}"
+        
 #=======================================================================
     # - name: generate release notes
     #   env:

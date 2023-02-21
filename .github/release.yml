@@ -3,7 +3,6 @@ changelog:
   exclude:
 
     labels:
-
       - ignore-for-release
 
   categories:

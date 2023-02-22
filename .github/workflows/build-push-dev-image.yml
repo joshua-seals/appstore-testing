@@ -57,5 +57,5 @@ jobs:
       uses: docker/build-push-action@v4
       with:
         push: true
-        tags: joshuaseals/appstore-testing:v${{ steps.version.outputs.version }}
+        tags: joshuaseals/appstore-testing:v${{ steps.version.outputs.version }}, joshuaseals/appstore-testing:latest
 

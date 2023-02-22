@@ -1,3 +1,5 @@
+![example workflow](https://github.com/github/docs/actions/workflows/build-push-dev-image.yml/badge.svg)
+
 # AppStore Overview
 
 ## Introduction

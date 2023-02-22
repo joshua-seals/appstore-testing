@@ -58,5 +58,5 @@ jobs:
       with:
         push: true
         tags: joshuaseals/appstore-testing:v${{ steps.version.outputs.version }}, joshuaseals/appstore-testing:latest
-        # cache-from: type=registry,ref=user/app:latest
-        # cache-to: type=inline
+        cache-from: type=registry,ref=user/app:latest
+        cache-to: type=inline

@@ -9,12 +9,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+    # - name: Set Short Sha
+    #   id: sha
+    #   run: |
+    #     calculatedSha=$(git rev-parse --short ${{ github.sha }})
+        
+
+    # - name: Check outputs
+    #   run: echo ${{ steps.sha.outputs.sha }}
     - name: Set outputs
       id: vars
-      run: |
-        calculatedSha=$(git rev-parse --short ${{ github.sha }})
-        echo "::set-output name=short_sha::$calculatedSha"
-
+      run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
     - name: Check outputs
       run: echo ${{ steps.vars.outputs.sha_short }}
 

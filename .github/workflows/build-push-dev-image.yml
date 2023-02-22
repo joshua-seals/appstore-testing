@@ -10,6 +10,13 @@ jobs:
     steps:
 
 
+    - name: Checkout Code
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.head_ref }} 
+        # fetch-depth: 0 means, get all branches and commits
+        fetch-depth: 0
+        
     - name: Set short git commit SHA
       id: vars
       run: |
@@ -18,13 +25,6 @@ jobs:
 
     - name: Confirm git commit SHA output
       run: echo ${{ steps.vars.outputs.short_sha }}
-
-    - name: Checkout Code
-      uses: actions/checkout@v3
-      with:
-        ref: ${{ github.head_ref }} 
-        # fetch-depth: 0 means, get all branches and commits
-        fetch-depth: 0
 
     # https://github.com/marketplace/actions/git-semantic-version
     - name: Semver Check

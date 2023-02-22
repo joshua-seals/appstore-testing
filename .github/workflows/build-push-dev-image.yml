@@ -12,7 +12,8 @@ jobs:
     - name: Set outputs
       id: vars
       run: |
-        sha_short=$(git rev-parse --short ${{ github.sha }})"
+        calculatedSha=$(git rev-parse --short ${{ github.sha }})"
+        echo "::set-output name=short_sha::$calculatedSha"
 
     - name: Check outputs
       run: echo ${{ steps.vars.outputs.sha_short }}
@@ -72,7 +73,7 @@ jobs:
         tags: 
           ${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:v${{ steps.version.outputs.version }} 
           ${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:develop
-          ${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:[]
+          ${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:${{ steps.vars.outputs.sha_short }}
 
         # cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:latest
         # cache-to: type=inline

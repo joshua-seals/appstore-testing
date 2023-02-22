@@ -59,12 +59,14 @@ jobs:
     # This action should use Git Context
     # Notes on Cache: 
     # https://docs.docker.com/build/ci/github-actions/examples/#inline-cache
-    
+
     - name: Build Push Container
       uses: docker/build-push-action@v4
       with:
         context: .
         push: true
-        tags: joshuaseals/appstore-testing:v${{ steps.version.outputs.version }}, joshuaseals/appstore-testing:latest
-        cache-from: type=registry,ref=joshuaseals/appstore:latest
-        cache-to: type=inline
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:v${{ steps.version.outputs.version }}, ${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:latest
+        # cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:latest
+        # cache-to: type=inline
+        cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:buildcache
+        cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:buildcache,mode=max

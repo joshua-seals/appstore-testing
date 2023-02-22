@@ -16,12 +16,11 @@ jobs:
         ref: ${{ github.head_ref }} 
         # fetch-depth: 0 means, get all branches and commits
         fetch-depth: 0
-        
+
     - name: Set short git commit SHA
       id: vars
       run: |
-        calculatedSha=$(git rev-parse --short ${{ github.sha }})
-        echo "::set-output name=short_sha::$calculatedSha"
+        short_sha=$(git rev-parse --short ${{ github.sha }}) >> $GITHUB_OUTPUT
 
     - name: Confirm git commit SHA output
       run: echo ${{ steps.vars.outputs.short_sha }}

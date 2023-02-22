@@ -9,13 +9,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    # fetch-depth: 0 is very important for Semver Check
+    - name: Set outputs
+      id: vars
+      run: |
+        sha_short=$(git rev-parse --short ${{ github.sha }})"
+
+    - name: Check outputs
+      run: echo ${{ steps.vars.outputs.sha_short }}
+
     - name: Checkout Code
       uses: actions/checkout@v3
       with:
         ref: ${{ github.head_ref }} 
+        # fetch-depth: 0 means, get all branches and commits
         fetch-depth: 0
 
+    # https://github.com/marketplace/actions/git-semantic-version
     - name: Semver Check
       uses: paulhatch/semantic-version@v5.0.2
       id: version
@@ -24,7 +33,7 @@ jobs:
         tag_prefix: "v"
         # A string which, if present in a git commit, indicates that a change represents a
         # major (breaking) change, supports regular expressions wrapped with '/'
-        major_pattern: "(MAJOR)"
+        major_pattern: "BREAKING"
         # A string which indicates the flags used by the `major_pattern` regular expression. Supported flags: idgs
         major_regexp_flags: ""
         # Same as above except indicating a minor change, supports regular expressions wrapped with '/'
@@ -34,15 +43,12 @@ jobs:
         # A string to determine the format of the version output
         # version_format: "${major}.${minor}.${patch}-prerelease${increment}"
         version_format: "${major}.${minor}.${patch}-prerelease${increment}"
-        # # Named version, will be used as suffix for name version tag
-        # namespace: my-service
-        # # If this is set to true, *every* commit will be treated as a new version.
-        # bump_each_commit: false
-        # If true, the body of commits will also be searched for major/minor patterns to determine the version type.
         search_commit_body: false
 
     # Docker Buildx is important to caching in the Build And Push Container
     # step
+    # https://github.com/marketplace/actions/build-and-push-docker-images
+
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
 
@@ -56,16 +62,18 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
         logout: true
 
-    # This action should use Git Context
     # Notes on Cache: 
     # https://docs.docker.com/build/ci/github-actions/examples/#inline-cache
-
     - name: Build Push Container
       uses: docker/build-push-action@v4
       with:
         context: .
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:v${{ steps.version.outputs.version }}, ${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:latest
+        tags: 
+          ${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:v${{ steps.version.outputs.version }} 
+          ${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:develop
+          ${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:[]
+
         # cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:latest
         # cache-to: type=inline
         cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:buildcache

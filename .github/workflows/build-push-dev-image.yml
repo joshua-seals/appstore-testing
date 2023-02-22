@@ -57,6 +57,9 @@ jobs:
         logout: true
 
     # This action should use Git Context
+    # Notes on Cache: 
+    # https://docs.docker.com/build/ci/github-actions/examples/#inline-cache
+    
     - name: Build Push Container
       uses: docker/build-push-action@v4
       with:

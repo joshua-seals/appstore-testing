@@ -10,12 +10,14 @@ jobs:
     steps:
 
 
-    - name: Set Short Sha
-      env:
-        SHA: ${{ github.sha }}
+    - name: Set short git commit SHA
+      id: vars
       run: |
-        SHORT_SHA=$(echo $SHA | tail -c 7)
-        
+        calculatedSha=$(git rev-parse --short ${{ github.sha }})
+        echo "::set-output name=short_sha::$calculatedSha"
+
+    - name: Confirm git commit SHA output
+      run: echo ${{ steps.vars.outputs.short_sha }}
 
     - name: Checkout Code
       uses: actions/checkout@v3
@@ -70,6 +72,6 @@ jobs:
         context: .
         push: true
         tags: 
-          ${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:v${{ steps.version.outputs.version }}, ${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:develop, ${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:${{ steps.outputs.SHORT_SHA }}
+          ${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:v${{ steps.version.outputs.version }}, ${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:develop, ${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:${{ steps.vars.outputs.short_sha }}
         cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:buildcache
         cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:buildcache,mode=max

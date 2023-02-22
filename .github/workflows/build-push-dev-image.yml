@@ -12,7 +12,7 @@ jobs:
     - name: Set outputs
       id: vars
       run: |
-        calculatedSha=$(git rev-parse --short ${{ github.sha }})"
+        calculatedSha=$(git rev-parse --short ${{ github.sha }})
         echo "::set-output name=short_sha::$calculatedSha"
 
     - name: Check outputs

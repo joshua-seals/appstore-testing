@@ -9,19 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    # # - name: Set Short Sha
-    # #   id: sha
-    # #   run: |
-    # #     calculatedSha=$(git rev-parse --short ${{ github.sha }})
-        
 
-    # # - name: Check outputs
-    # #   run: echo ${{ steps.sha.outputs.sha }}
-    # - name: Set outputs
-    #   env:
-    #     SHA: ${{ github.sha }}
-    #   run: |
-    #     SHORT_SHA=$(echo $SHA | tail -c 7)
+    - name: Set Short Sha
+      env:
+        SHA: ${{ github.sha }}
+      run: |
+        SHORT_SHA=$(echo $SHA | tail -c 7)
         
 
     - name: Checkout Code
@@ -77,9 +70,6 @@ jobs:
         context: .
         push: true
         tags: 
-          ${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:v${{ steps.version.outputs.version }}, ${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:develop, ${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:${{ github.sha }}
-
-        # cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:latest
-        # cache-to: type=inline
+          ${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:v${{ steps.version.outputs.version }}, ${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:develop, ${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:${{ steps.outputs.SHORT_SHA }}
         cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:buildcache
         cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:buildcache,mode=max

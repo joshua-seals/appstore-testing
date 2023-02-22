@@ -77,9 +77,7 @@ jobs:
         context: .
         push: true
         tags: 
-          ${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:v${{ steps.version.outputs.version }} 
-          ${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:develop
-          ${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:${{ github.sha }}
+          ${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:v${{ steps.version.outputs.version }}, ${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:develop, ${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:${{ github.sha }}
 
         # cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:latest
         # cache-to: type=inline

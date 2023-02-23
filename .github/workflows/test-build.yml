@@ -1,5 +1,5 @@
 # This job depends on flake8 being run first and passing.
-name: Lint-&-Test_Build
+name: Code Checks
 on:
   push:
     branches-ignore:
@@ -14,7 +14,7 @@ on:
 
 
 jobs:
-  flake8-check:
+  flake8-linter:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -53,7 +53,7 @@ jobs:
         # fetch-depth: 0 means, get all branches and commits
         fetch-depth: 0
  
-  test-build:
+  testing-image-build:
     needs: flake8-check
     runs-on: ubuntu-latest
     steps:

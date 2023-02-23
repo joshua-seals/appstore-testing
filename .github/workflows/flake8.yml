@@ -3,7 +3,8 @@ name: flake8
 on:
   push:
 
-    # branches:
+    branches:
+      - testing*
     #   - "feat/*"
     #   - "test/*"
     #   - "fix/*"

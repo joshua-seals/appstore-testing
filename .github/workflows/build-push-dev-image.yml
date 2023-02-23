@@ -1,4 +1,12 @@
-# This job depends on flake8 being run first and passing.
+# Workflow responsible for the 
+# major release processes.
+# 
+# 
+# 
+#    
+# CI/CD Maintainer: Joshua Seals 🦭
+#            Email: jseals@renci.org
+#
 name: Build-Push-Dev-Image
 on:
   push:
@@ -6,7 +14,6 @@ on:
       - develop
 jobs:
   build-push-dev-image:
-    needs: flake8
     runs-on: ubuntu-latest
     steps:
     

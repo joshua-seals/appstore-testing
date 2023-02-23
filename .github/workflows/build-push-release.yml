@@ -1,3 +1,14 @@
+# Workflow responsible for the 
+# major release processes.
+# 
+# 
+# 
+#    
+# CI/CD Maintainer: Joshua Seals 🦭
+#            Email: jseals@renci.org
+#
+
+
 name: Build-Push-Release
 on:
   workflow_dispatch:

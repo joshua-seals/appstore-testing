@@ -27,7 +27,7 @@ on:
       - develop
       - master
       - main 
-    types: [ opened, synchronize ]
+    types: [ opened ]
 
 jobs:
 ############################## flake8-linter ##############################

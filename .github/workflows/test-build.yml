@@ -1,5 +1,5 @@
 # This job depends on flake8 being run first and passing.
-name: Code Checks
+name: Acceptance-Tests
 on:
   push:
     branches-ignore:

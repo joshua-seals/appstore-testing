@@ -2,16 +2,6 @@ name: flake8
 
 on:
   push:
-
-    branches:
-      - testing*
-    #   - "feat/*"
-    #   - "test/*"
-    #   - "fix/*"
-    #   - "doc/*"
-    #   - develop
-    #   - master
-    #   - main
   pull_request:
     branches: [ master, main, develop ]
     types: [ opened ]
@@ -25,14 +15,12 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-
         python-version: '3.9'
-        # cache: 'pip'
-        # cache-dependency-path: |
-        #   setup.cfg
-        #   setup.py
-        #   requirements.txt
 
+    # Currently actions/setup-python supports caching
+    # but the cache is not as robust.
+    # Here we cache the entire python env which speeds subsequent builds up alot.
+    # Ref: https://blog.allenai.org/python-caching-in-github-actions-e9452698e98d
     - uses: actions/cache@v3
       name: Cache Python
       with:

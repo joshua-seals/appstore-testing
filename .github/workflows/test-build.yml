@@ -10,7 +10,7 @@ on:
 
 jobs:
   test-build:
-    needs: flake8
+    needs: flake8-check
     runs-on: ubuntu-latest
     steps:
     

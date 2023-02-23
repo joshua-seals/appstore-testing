@@ -15,21 +15,27 @@ on:
     types: [ opened ]
 
 jobs:
-  flak8e-check:
+  flake8-check:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.x'
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
+        python-version: '3.9.*'
+        cache: 'pip'
+        cache-dependency-path: |
+          setup.cfg
+          setup.py
+          requirements.txt
+    - run: |
         pip install -r requirements.txt
+
     - name: Lint with flake8
       run: |
         pip install flake8
-        flake8 --ignore=E,W --exit-zero . 
+        flake8 --ignore=E,W . 
       # We continue on error here until the code is clean
+      # flake8 --ignore=E,W --exit-zero . 
       continue-on-error: false

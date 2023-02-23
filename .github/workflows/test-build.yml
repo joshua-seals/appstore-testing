@@ -9,7 +9,7 @@ on:
     types: [opened]
 
 jobs:
-  build-push-dev-image:
+  test-build:
     needs: flake8
     runs-on: ubuntu-latest
     steps:

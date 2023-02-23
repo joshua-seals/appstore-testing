@@ -1,5 +1,5 @@
 # This job depends on flake8 being run first and passing.
-name: Acceptance-Tests
+name: Code-Checks
 on:
   push:
     branches-ignore:
@@ -54,7 +54,7 @@ jobs:
         fetch-depth: 0
  
   testing-image-build:
-    needs: flake8-check
+    needs: flake8-linter
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3

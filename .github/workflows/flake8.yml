@@ -2,14 +2,16 @@ name: flake8
 
 on:
   push:
-    branches:
-      - "feat/*"
-      - "test/*"
-      - "fix/*"
-      - "doc/*"
-      - develop
+    # branches:
+    #   - "feat/*"
+    #   - "test/*"
+    #   - "fix/*"
+    #   - "doc/*"
+    #   - develop
+    #   - master
+    #   - main
   pull_request:
-    branches: [ master, develop ]
+    branches: [ master, main, develop ]
     types: [ opened ]
 
 jobs:
@@ -30,4 +32,4 @@ jobs:
         pip install flake8
         flake8 --ignore=E,W --exit-zero . 
       # We continue on error here until the code is clean
-      continue-on-error: true
+      continue-on-error: false

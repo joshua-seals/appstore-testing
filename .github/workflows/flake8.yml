@@ -32,13 +32,6 @@ jobs:
           setup.py
           requirements.txt
 
-    # - uses: actions/cache@v3
-    #   with:
-    #     path: ~/.cache/pip
-    #     key: ${{ hashFiles('setup.py') }}-${{ hashFiles('requirements.txt') }}
-    #     # restore-keys: |
-    #     #   ${{ runner.os }}-pip-
-
     - name: Install Requirements
       run: |
         pip install -r requirements.txt

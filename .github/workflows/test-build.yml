@@ -1,5 +1,5 @@
 # This job depends on flake8 being run first and passing.
-name: Lint-Test-Build
+name: Lint-&-Test_Build
 on:
   push:
     branches-ignore:

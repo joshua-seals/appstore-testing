@@ -69,7 +69,7 @@ jobs:
       run: |
         curl \
         --request POST \
-        --header "Authorization: token ${{ secrets.GITHUB_TOKEN }}"\
+        --header "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"\
         --header 'content-type: application/json' \
         --url https://api.github.com/repos/joshua-seals/appstore-testing/git/refs \
         --data '{

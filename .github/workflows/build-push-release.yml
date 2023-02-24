@@ -92,10 +92,9 @@ jobs:
         cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:buildcache,mode=max
 
     - name: Add Tag to Main/Master Branch
-      # with:
-      #   github_token: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        git checkout master
         git tag ${{ steps.version.outputs.version }}
         git commit -m "New release ${{ steps.version.outputs.version }} by gh action"
         git push origin ${{ steps.version.outputs.version }}

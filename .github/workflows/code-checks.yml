@@ -21,6 +21,11 @@ on:
     paths-ignore:
       - README.md
       - .old_cicd/*
+      - .github/*
+      - LICENSE
+      - .gitignore
+      - .dockerignore
+      - .githooks
   pull_request:
     branches:
       - develop

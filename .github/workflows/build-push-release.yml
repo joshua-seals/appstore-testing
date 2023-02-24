@@ -66,11 +66,15 @@ jobs:
     # which is auto-enabled when using github actions.
     # https://docs.github.com/en/rest/guides/getting-started-with-the-rest-api?apiVersion=2022-11-28#authentication-example-for-github-actions
     - name: Tag New Release
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}"
+        OWNER: ${{ secrets.DOCKERHUB_USERNAME }}
+        REPO: ${{ github.repository }}
       run: |
         curl \
         --request POST \
-        --url https://api.github.com/repos/joshua-seals/appstore-testing/git/tags \      
-        --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"\
+        --url https://api.github.com/repos/$REPO/git/tags \      
+        --header "Authorization: Bearer $GH_TOKEN" \
         --header 'content-type: application/json' \
         --data '{
             "tag": "${{ steps.version.outputs.version }}",
@@ -85,7 +89,7 @@ jobs:
         curl \
         --request POST \
         --url https://api.github.com/repos/joshua-seals/appstore-testing/git/refs \
-        --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"\
+        --header "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"\
         --header 'content-type: application/json' \
         --data '{
             "ref":"refs/tags/${{ steps.version.outputs.version }}",

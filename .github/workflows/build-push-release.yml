@@ -71,13 +71,28 @@ jobs:
         --request POST \
         --header "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"\
         --header 'content-type: application/json' \
-        --url https://api.github.com/repos/joshua-seals/appstore-testing/git/refs/${{ github.ref }} \
+        --url https://api.github.com/repos/joshua-seals/appstore-testing/git/tags \
+        --data '{
+            "tag": "${{ steps.version.outputs.version }}",
+            "message":"New release ${{ steps.version.outputs.version }}",
+            "object":"${{ github.sha }}",
+            "type":"commit",
+            }'
+        --fail
+
+    - name: Create Ref to tag
+      run: |
+        curl \
+        --request POST \
+        --header "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"\
+        --header 'content-type: application/json' \
+        --url https://api.github.com/repos/joshua-seals/appstore-testing/git/refs \
         --data '{
             "ref":"refs/tags/${{ steps.version.outputs.version }}",
             "sha":"${{ github.sha }}"
             }'
         --fail
-        
+
         
     # Docker Buildx is important to caching in the Build And Push Container
     # step

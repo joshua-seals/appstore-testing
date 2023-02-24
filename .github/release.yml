@@ -15,17 +15,14 @@ changelog:
     - title: New Features
 
       labels:
-
         - enhancement
 
     - title: Bug Fixes
 
       labels:
-
         - bug-fix
 
     - title: Other Changes
 
       labels:
-
         - "*"

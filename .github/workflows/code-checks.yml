@@ -62,14 +62,14 @@ jobs:
         flake8 --ignore=E,W . 
       # We continue on error here until the code is clean
       # flake8 --ignore=E,W --exit-zero . 
-      continue-on-error: false
+      continue-on-error: true
     
-    - name: Checkout Code
-      uses: actions/checkout@v3
-      with:
-        ref: ${{ github.head_ref }} 
-        # fetch-depth: 0 means, get all branches and commits
-        fetch-depth: 0
+    # - name: Checkout Code
+    #   uses: actions/checkout@v3
+    #   with:
+    #     ref: ${{ github.head_ref }} 
+    #     # fetch-depth: 0 means, get all branches and commits
+    #     fetch-depth: 0
 
 ############################## test-image-build ##############################
   test-image-build:

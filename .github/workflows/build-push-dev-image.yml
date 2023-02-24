@@ -10,6 +10,9 @@ on:
   push:
     branches:
       - develop
+  pull_request:
+    branches-ignore:
+      - '*'
 jobs:
   build-push-dev-image:
     runs-on: ubuntu-latest

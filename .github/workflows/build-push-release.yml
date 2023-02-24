@@ -71,7 +71,7 @@ jobs:
         --request POST \
         --header "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"\
         --header 'content-type: application/json' \
-        --url https://api.github.com/repos/joshua-seals/appstore-testing/git/refs \
+        --url https://api.github.com/repos/joshua-seals/appstore-testing/git/refs/heads/master \
         --data '{
             "ref":"refs/tags/${{ steps.version.outputs.version }}",
             "sha":"${{ github.sha }}"

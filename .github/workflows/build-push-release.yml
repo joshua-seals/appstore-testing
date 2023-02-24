@@ -68,12 +68,11 @@ jobs:
     - name: Tag New Release
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}"
-        OWNER: ${{ secrets.DOCKERHUB_USERNAME }}
-        REPO: ${{ github.repository }}
+        # REPO: ${{ github.repository }}
       run: |
         curl \
         --request POST \
-        --url https://api.github.com/repos/$REPO/git/tags \      
+        --url https://api.github.com/repos/joshua-seals/appstore-testing/git/tags \      
         --header "Authorization: Bearer $GH_TOKEN" \
         --header 'content-type: application/json' \
         --data '{

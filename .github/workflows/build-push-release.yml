@@ -71,12 +71,13 @@ jobs:
         --request POST \
         --header "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"\
         --header 'content-type: application/json' \
-        --url https://api.github.com/repos/joshua-seals/appstore-testing/git/refs/heads/master \
+        --url https://api.github.com/repos/joshua-seals/appstore-testing/git/refs/${{ github.ref }} \
         --data '{
             "ref":"refs/tags/${{ steps.version.outputs.version }}",
             "sha":"${{ github.sha }}"
             }'
         --fail
+        
         
     # Docker Buildx is important to caching in the Build And Push Container
     # step

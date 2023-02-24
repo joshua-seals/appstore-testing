@@ -69,9 +69,9 @@ jobs:
       run: |
         curl \
         --request POST \
-        --header "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"\
+        --url https://api.github.com/repos/joshua-seals/appstore-testing/git/tags \      
+        --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"\
         --header 'content-type: application/json' \
-        --url https://api.github.com/repos/joshua-seals/appstore-testing/git/tags \
         --data '{
             "tag": "${{ steps.version.outputs.version }}",
             "message":"New release ${{ steps.version.outputs.version }}",
@@ -84,9 +84,9 @@ jobs:
       run: |
         curl \
         --request POST \
-        --header "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"\
-        --header 'content-type: application/json' \
         --url https://api.github.com/repos/joshua-seals/appstore-testing/git/refs \
+        --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"\
+        --header 'content-type: application/json' \
         --data '{
             "ref":"refs/tags/${{ steps.version.outputs.version }}",
             "sha":"${{ github.sha }}"

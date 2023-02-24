@@ -10,9 +10,18 @@ on:
   push:
     branches:
       - develop
+    paths-ignore:
+      - README.md
+      - .old_cicd/*
+      - .github/*
+      - LICENSE
+      - .gitignore
+      - .dockerignore
+      - .githooks
   pull_request:
     branches-ignore:
       - '*'
+
 jobs:
   build-push-dev-image:
     runs-on: ubuntu-latest

@@ -1,6 +1,4 @@
-[![flake8](https://github.com/joshua-seals/appstore-testing/actions/workflows/flake8.yml/badge.svg?branch=develop)](https://github.com/joshua-seals/appstore-testing/actions/workflows/flake8.yml)
 
-[![flake8](https://github.com/joshua-seals/appstore-testing/actions/workflows/flake8.yml/badge.svg?branch=master)](https://github.com/joshua-seals/appstore-testing/actions/workflows/flake8.yml)
 
 # AppStore Overview
 

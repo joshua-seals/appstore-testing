@@ -1,12 +1,10 @@
 # Workflow responsible for the 
-# major release processes.
-# 
-# 
-# 
-#    
+# development release processes.
+#  
 # CI/CD Maintainer: Joshua Seals 🦭
 #            Email: jseals@renci.org
 #
+
 name: Build-Push-Dev-Image
 on:
   push:

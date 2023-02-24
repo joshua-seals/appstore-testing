@@ -68,7 +68,7 @@ jobs:
     # https://docs.github.com/en/rest/git/tags?apiVersion=2022-11-28#create-a-tag-object
     - name: Tag New Release
       env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}"
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         curl \
         --request POST \

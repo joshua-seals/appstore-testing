@@ -123,5 +123,5 @@ jobs:
       run: |
         jq -r .body tmp-release-notes.json > tmp-release-notes.md
         gh release create ${{ env.RELEASE_VERSION }} \
-          -t "$(jq -r .name tmp-release-notes.json)" \
-          -F tmp-release-notes.md \
+          -t "${{ env.RELEASE_VERSION }}" \
+          -F tmp-release-notes.md

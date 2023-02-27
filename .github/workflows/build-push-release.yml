@@ -67,20 +67,20 @@ jobs:
     # which is auto-enabled when using github actions.
     # https://docs.github.com/en/actions/security-guides/automatic-token-authentication
     # https://docs.github.com/en/rest/git/tags?apiVersion=2022-11-28#create-a-tag-object
-    - name: Tag New Release
-      run: |
-        curl \
-        -X POST \
-        https://api.github.com/repos/${{ github.repository }}/git/tags \  
-        -H "Accept: application/vnd.github+json" \    
-        -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-        -H "X-GitHub-Api-Version: 2022-11-28" \
-        -d '{
-          "tag": "v${{ steps.version.outputs.version }}",
-          "message":"New release ${{ steps.version.outputs.version }}",
-          "object":"${{ github.sha }}",
-          "type":"tree"}'
-        --fail
+    # - name: Tag New Release
+    #   run: |
+    #     curl \
+    #     -X POST \
+    #     https://api.github.com/repos/${{ github.repository }}/git/tags \  
+    #     -H "Accept: application/vnd.github+json" \    
+    #     -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+    #     -H "X-GitHub-Api-Version: 2022-11-28" \
+    #     -d '{
+    #       "tag": "v${{ steps.version.outputs.version }}",
+    #       "message":"New release ${{ steps.version.outputs.version }}",
+    #       "object":"${{ github.sha }}",
+    #       "type":"tree"}'
+    #     --fail
 
     # https://docs.github.com/en/rest/git/refs?apiVersion=2022-11-28#create-a-reference
     - name: Create Ref to tag
@@ -90,7 +90,7 @@ jobs:
         -H "Accept: application/vnd.github+json" \    
         -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
         -H "X-GitHub-Api-Version: 2022-11-28" \
-        https://api.github.com/repos/${{ github.repository }}/git/refs \ 
+        https://api.github.com/repos/${{ github.repository }}/git/refs/heads/master \ 
         -d '{
             "ref":"refs/tags/v${{ steps.version.outputs.version }}",
             "sha":"${{ github.sha }}"

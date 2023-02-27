@@ -119,6 +119,7 @@ jobs:
 
     - name: Create Release
       env:
+        RELEASE_VERSION: ${{ steps.version.outputs.version }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         jq -r .body tmp-release-notes.json > tmp-release-notes.md

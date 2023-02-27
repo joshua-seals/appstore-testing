@@ -18,6 +18,7 @@ on:
     branches-ignore:
       - master
       - main
+      - develop
     paths-ignore:
       - README.md
       - .old_cicd/*
@@ -32,7 +33,7 @@ on:
       - develop
       - master
       - main 
-    types: [ opened ]
+    types: [ opened, synchronize ]
 
 
 jobs:

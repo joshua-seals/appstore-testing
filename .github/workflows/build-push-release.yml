@@ -88,7 +88,7 @@ jobs:
         -s -X POST \
         -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
         https://api.github.com/repos/${{ github.repository }}/git/refs \
-        -d '{"ref":"refs/tags/v${{ steps.version.outputs.version }}","sha":"${{ github.sha }}"}'
+        -d '{"ref":"refs/tags/v${{ steps.version.outputs.version }}","sha":"${{ github.sha }}"}'\
         --fail
     # Docker Buildx is important to caching in the Build And Push Container
     # step

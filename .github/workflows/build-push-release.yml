@@ -106,9 +106,8 @@ jobs:
         cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/appstore-testing:buildcache,mode=max
 
 
-
 #=======================================================================
-    - name: generate release notes
+    - name: Generate Release Notes
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         RELEASE_VERSION: ${{ steps.version.outputs.version }}
@@ -117,3 +116,12 @@ jobs:
           -F commitish=${{ env.RELEASE_VERSION }} \
           -F tag_name=${{ env.RELEASE_VERSION }} \
           > tmp-release-notes.json
+
+    - name: Create Release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        jq -r .body tmp-release-notes.json > tmp-release-notes.md
+        gh release create ${{ env.RELEASE_VERSION }} \
+          -t "$(jq -r .name tmp-release-notes.json)" \
+          -F tmp-release-notes.md \

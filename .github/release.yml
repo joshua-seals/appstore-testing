@@ -12,6 +12,7 @@ changelog:
       labels:
         - enhancement
         - features
+        - feature
         - feat
     - title: Bug Fixes
       labels:

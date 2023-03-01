@@ -3,6 +3,7 @@ from product.configuration import ProductSettings, ProductColorScheme
 
 APPLICATION_BRAND = "argus"
 
+
 PRODUCT_SETTINGS = ProductSettings(
     brand="argus",
     title="Argus Array",

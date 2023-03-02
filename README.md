@@ -24,7 +24,15 @@ testing of the live server/API is implemented using the `artillery` npm package.
 
 ## CI/CD
 
-Github Actions are employed to lint, test, and build this project. This repository automates the building and publishing of docker images in `develop` & `master\main` branches. These published images can be found [here](https://hub.docker.com/repository/docker/helxplatform/appstore) and are tagged thusly:
+Github Actions are employed to lint, test, and build and publish this project.
+
+### Packaging
+
+Appstore is packaged as a Docker image in a non-root container and embeds a copy of the [helx-ui](https://hub.docker.com/repository/docker/helxplatform/helx-ui) front end within the Dockerfile image specificaton itself. 
+
+The docker image is built and published automatically when merging to `develop` or `master` branches. 
+
+These published images can be found [here](https://hub.docker.com/repository/docker/helxplatform/appstore) and are tagged thusly:
 
 #### develop-branch
 - appstore:develop
@@ -35,19 +43,17 @@ Github Actions are employed to lint, test, and build this project. This reposito
 - appstore:(short-commit-sha)
 - appstore:vX.X.X
 
-Linting Action:
-
-Inline comments within the code such as #noqa: F401 are necessary items that instruct the linter to bypass or perform a special action for specific sections of code. ***DO NOT DELETE these inline comments.
-
-
-## Packaging
-
-Appstore is packaged as a Docker image. It is a non-root container, meaning the
-user is not a superuser. It packages a frontend copied from [helx-ui](https://hub.docker.com/repository/docker/helxplatform/helx-ui).
-
 ### Releases
 
-Following Semver, (major, minor, patch); containers will be tagged accordingly.
+Releases are also automated following the semver specification ('major', 'minor','patch') for the project when merging `develop` branch to `master`. 
+
+A new tag solidifying the semver version of the new release is first generated, then a github release object will be created with release notes highlighting major, minor, patches along with contributors for each release. 
+
+The template for the release notes may be found [here](https://github.com/helxplatform/appstore/blob/develop/.github/release.yml)
+
+#### CI/CD HouseKeeping
+
+Inline comments within the code such as `#noqa: F401` are necessary items that instruct the linter to bypass or perform a special action for specific sections of code. ***PLEASE DO NOT DELETE these inline comments.
 
 ## Deployment
 

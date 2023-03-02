@@ -24,12 +24,20 @@ testing of the live server/API is implemented using the `artillery` npm package.
 
 ## CI/CD
 
-Github Actions are employed to lint, test, and build this project.
+Github Actions are employed to lint, test, and build this project. This repository automates the building and publishing of docker images in `develop` & `master\main` branches. These published images can be found [here](https://hub.docker.com/repository/docker/helxplatform/appstore) and are tagged thusly:
+
+#develop-branch
+- appstore:develop
+- appstore:(short-commit-sha)
+- appstore:vX.X.X-prereleaseX 👈 Where the version is the expected next release version and prerelease number is the amount of commits on that version. 
+#master-branch
+- appstore:latest
+- appstore:(short-commit-sha)
+- appstore:vX.X.X
 
 Linting Action:
 
-Inline comments within the code such as `#noqa: F401` are necessary items that instruct the linter to bypass or perform a special action for specific sections of code. 
-***DO NOT DELETE these inline comments.
+Inline comments within the code such as #noqa: F401 are necessary items that instruct the linter to bypass or perform a special action for specific sections of code. ***DO NOT DELETE these inline comments.
 
 
 ## Packaging

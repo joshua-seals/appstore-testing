@@ -35,19 +35,19 @@ The docker image is built and published automatically when merging to `develop` 
 These published images can be found [here](https://hub.docker.com/r/helxplatform/appstore) and are tagged thusly:
 
 #### develop-branch
-- appstore:develop
-- appstore:(short-commit-sha)
-- appstore:vX.X.X-prereleaseX 👈 Where the version is the expected next release version and prerelease number is the amount of commits on that version. 
+- appstore:`develop`
+- appstore:`(short-commit-sha)`
+- appstore:`vX.X.X-prerelease{X}` Prerelease version is the expected next release version based on current commits and the prerelease{X} number is the amount of commits on that version.
 #### master-branch
-- appstore:latest
-- appstore:(short-commit-sha)
-- appstore:vX.X.X
+- appstore:`latest`
+- appstore:`(short-commit-sha)`
+- appstore:`vX.X.X`
 
 ### Releases
 
-Releases are also automated following the semver specification ('major', 'minor','patch') for the project when merging `develop` branch to `master`. 
+[Releases](https://github.com/helxplatform/appstore/releases) are also automated following the semver specification ('major', 'minor','patch') for the project when merging `develop` branch to `master`. 
 
-A new tag solidifying the semver version of the new release is first generated, then a github release object will be created with release notes highlighting major, minor, patches along with contributors for each release. 
+During a new release workflow, a new tag solidifying the semver version of the new release is first added to the master branch, then a github release object is created with release notes highlighting major, minor, patch changes and contributors for each release.
 
 The template for the release notes may be found [here](https://github.com/helxplatform/appstore/blob/develop/.github/release.yml)
 

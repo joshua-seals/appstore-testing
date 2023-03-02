@@ -28,11 +28,11 @@ Github Actions are employed to lint, test, build and publish this project.
 
 ### Packaging
 
-Appstore is packaged as a Docker image in a non-root container and embeds a copy of the [helx-ui](https://hub.docker.com/repository/docker/helxplatform/helx-ui) front end within the Dockerfile image specificaton itself. 
+Appstore is packaged as a Docker image in a non-root container and embeds a copy of the [helx-ui](https://hub.docker.com/r/helxplatform/helx-ui) front end within the Dockerfile image specificaton itself. 
 
 The docker image is built and published automatically when merging to `develop` or `master` branches. 
 
-These published images can be found [here](https://hub.docker.com/repository/docker/helxplatform/appstore) and are tagged thusly:
+These published images can be found [here](https://hub.docker.com/r/helxplatform/appstore) and are tagged thusly:
 
 #### develop-branch
 - appstore:develop

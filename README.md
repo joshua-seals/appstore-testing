@@ -26,11 +26,11 @@ testing of the live server/API is implemented using the `artillery` npm package.
 
 Github Actions are employed to lint, test, and build this project. This repository automates the building and publishing of docker images in `develop` & `master\main` branches. These published images can be found [here](https://hub.docker.com/repository/docker/helxplatform/appstore) and are tagged thusly:
 
-#develop-branch
+# develop-branch
 - appstore:develop
 - appstore:(short-commit-sha)
 - appstore:vX.X.X-prereleaseX 👈 Where the version is the expected next release version and prerelease number is the amount of commits on that version. 
-#master-branch
+# master-branch
 - appstore:latest
 - appstore:(short-commit-sha)
 - appstore:vX.X.X

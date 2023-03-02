@@ -24,7 +24,7 @@ testing of the live server/API is implemented using the `artillery` npm package.
 
 ## CI/CD
 
-Github Actions are employed to lint, test, and build and publish this project.
+Github Actions are employed to lint, test, build and publish this project.
 
 ### Packaging
 

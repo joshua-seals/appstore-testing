@@ -1,6 +1,8 @@
 #!/bin/bash
 set -ex
 
+
+
 ###############################################################################
 ##
 ##  This script presents a shell utility for creating a Django super user.

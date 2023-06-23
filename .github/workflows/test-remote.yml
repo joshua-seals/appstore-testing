@@ -1,0 +1,23 @@
+name: Build-Push-Release
+on:
+  push:
+    branches:
+      - master 
+      - main
+    paths-ignore:
+      - README.md
+      - .old_cicd/*
+      - .github/*
+      - .github/workflows/*
+      - LICENSE
+      - .gitignore
+      - .dockerignore
+      - .githooks
+    tags-ignore:
+      - 'v[0-9]+.[0-9]+.*'
+jobs:
+  build-push-release:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Build-Push-Release
+      uses: joshua-seals/renci-github-actions/.github/workflows/build-push-release.yml

@@ -7,8 +7,8 @@ on:
     paths-ignore:
       - README.md
       - .old_cicd/*
-      - .github/*
-      - .github/workflows/*
+      # - .github/*
+      # - .github/workflows/*
       - LICENSE
       - .gitignore
       - .dockerignore
@@ -20,4 +20,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Build-Push-Release
-      uses: joshua-seals/renci-github-actions/.github/workflows/build-push-release.yml
+      uses: joshua-seals/renci-github-actions/.github/workflows/build-push-release.yml@main

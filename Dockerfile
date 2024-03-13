@@ -25,7 +25,6 @@ RUN set -x && apt-get update && \
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash
 RUN apt-get install -y nodejs
    
-   
 WORKDIR $APP_HOME
 COPY . .
 COPY --from=builder /usr/share/nginx/html/index.html ./appstore/frontend/templates/frontend

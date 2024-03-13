@@ -1,4 +1,4 @@
-name: Build-Push-Release
+name: Build-Push-Release-Remote
 on:
   push:
     branches:
